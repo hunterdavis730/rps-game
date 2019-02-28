@@ -10,8 +10,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
-    <script src="Assets/game.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <title>Document</title>
 </head>
 
@@ -29,22 +28,42 @@
             <div class="col-md-6 text-center">
                 <div class="card bg-dark">
                     <div class="card-body d-inline-flex justify-content-around">
-                        <p class="card-text text-white">Wins: </p>
-                        <p class="card-text text-white">Losses: </p>
-                        <p class="card-text text-white">Ties: </p>
+                        <p class="card-text text-white">Wins: <span id="winRow"></span> </p>
+                        <p class="card-text text-white">Losses: <span id="lossRow"></span> </p>
+                        <p class="card-text text-white">Ties: <span id="tieRow"></span> </p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3"></div>
+            <div class="row">
+            </div>
         </div>
-        <div class="row mt-5">
-            <div class="col-md-3 mt-5 ml-3">
+        <div class="row mt-5 d-flex justify-content-between">
+            <div class="col-md-4 mt-5 ml-3">
                 <img src="Assets/Images/stick-warrior.jpeg" alt="">
             </div>
-            <div class="col-md-6 text-center">
-                <!-- <img src="https://via.placeholder.com/300" alt=""> -->
+
+
+
+            <div class="col-md-3 ml-3 ">
+                <div class="d-flex justify-content-center" id="battle"></div>
+            </div>
+            <div class="col-md-4 mt-2">
+                <div class="d-flex justify-content-end mt-3" id="opponent">
+
+                </div>
             </div>
 
+
+        </div>
+        <div class="row mt-1 ml-3">
+            <div class="card ml-1 bg-dark" style="width: 12rem; height: 4rem;">
+                <div class="card-body d-flex align-items-center justify-content-center ">
+                    <div id="warrior" class="">
+
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row mt-5">
             <div class="col-md-3 ml-5">
@@ -53,9 +72,9 @@
                         <h5 class="card-title text-center text-white">Choose Your Weapon!</h5>
                         <hr>
                         <div class="d-flex justify-content-around">
-                            <button type="button" class="btn btn-outline-light"><i class="far fa-hand-rock"></i></button>
-                            <button type="button" class="btn btn-outline-light"><i class="far fa-hand-paper"></i></button>
-                            <button type="button" class="btn btn-outline-light"><i class="far fa-hand-scissors"></i></button>
+                            <button type="button" class="btn btn-outline-light" id="rock" value="rock"><i class="far fa-hand-rock"></i></button>
+                            <button type="button" class="btn btn-outline-light" id="paper" value="paper"><i class="far fa-hand-paper"></i></button>
+                            <button type="button" class="btn btn-outline-light" id="scissors" value="scissors"><i class="far fa-hand-scissors"></i></button>
                         </div>
                     </div>
 
@@ -63,6 +82,10 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="Assets/game.js"></script>
 </body>
+
 
 </html>
