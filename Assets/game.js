@@ -93,9 +93,30 @@ var logTie = function () {
     $('#tieRow').text(ties)
 }
 
+var newGame = function () {
+    $('#battle').empty();
+    var submitButton = $('<button>')
+    submitButton.addClass('btn btn-danger new-game');
+    submitButton.text('Next Opponent');
+    $('#battle').append(submitButton);
+}
+
+var initializeGame = function () {
+    computerGuess = [];
+    selectedOpponent = [];
+    hasPicked = false;
+    disableChoices = false;
+    randomizeOpp();
+    randomizeGuess();
+    $('#opponent').empty();
+    $('#battle').empty();
+    $('#warrior').empty();
+}
+
+
 $(document).ready(function () {
 
-    randomizeGuess();
+    initializeGame();
 
     console.log(computerGuess)
 
@@ -110,51 +131,47 @@ $(document).ready(function () {
 
     var throwRock = function () {
 
-        userChoice = 'rock';
-
-        if (hasPicked) {
-            if (computerGuess.toString() === 'paper') {
-                logLoss();
-            } else if (computerGuess.toString() === 'scissors') {
-                logWin();
-            } else {
-                logTie();
-            }
+        if (computerGuess.toString() === 'paper') {
+            logLoss();
+            alert('You lost. ' + selectedOpponent.toString() + ' threw paper.')
+        } else if (computerGuess.toString() === 'scissors') {
+            logWin();
+            alert('You Won. ' + selectedOpponent.toString() + ' threw scissors.')
+        } else {
+            logTie();
+            alert('You tied. ' + selectedOpponent.toString() + ' threw rock.')
         }
+        newGame();
     }
 
     var throwPaper = function () {
-        userChoice = 'paper'
 
-
-
-        if (hasPicked) {
-            if (computerGuess.toString() === 'scissors') {
-                logLoss();
-            } else if (computerGuess.toString() === 'rock') {
-                logWin();
-            } else {
-                logTie();
-            }
+        if (computerGuess.toString() === 'scissors') {
+            logLoss();
+            alert('You lost. ' + selectedOpponent.toString() + ' threw scissors.')
+        } else if (computerGuess.toString() === 'rock') {
+            logWin();
+            alert('You Won. ' + selectedOpponent.toString() + ' threw rock.')
+        } else {
+            logTie();
+            alert('You tied. ' + selectedOpponent.toString() + ' threw paper.')
         }
+        newGame();
     }
 
     var throwScissors = function () {
-        userChoice = 'scissors'
 
-
-
-
-
-        if (hasPicked) {
-            if (computerGuess.toString() === 'rock') {
-                logLoss();
-            } else if (computerGuess.toString() === 'paper') {
-                logWin();
-            } else {
-                logTie();
-            }
+        if (computerGuess.toString() === 'rock') {
+            logLoss();
+            alert('You lost. ' + selectedOpponent.toString() + ' threw rock.')
+        } else if (computerGuess.toString() === 'paper') {
+            logWin();
+            alert('You Won. ' + selectedOpponent.toString() + ' threw paper.')
+        } else {
+            logTie();
+            alert('You tied. ' + selectedOpponent.toString() + ' threw scissors.')
         }
+        newGame();
     }
 
     var submitWeapon = function (event) {
@@ -177,8 +194,10 @@ $(document).ready(function () {
 
 
     $('#rock').on('click', function () {
+        userChoice = 'rock';
+
         if (!disableChoices) {
-            randomizeOpp();
+
             opponentImage();
         }
 
@@ -190,14 +209,16 @@ $(document).ready(function () {
 
 
 
-        console.log(selectedOpponent.toString())
+
     })
 
 
 
     $('#paper').on('click', function () {
+        userChoice = 'paper';
+
         if (!disableChoices) {
-            randomizeOpp();
+
             opponentImage();
         }
 
@@ -208,12 +229,14 @@ $(document).ready(function () {
         }
 
 
-        console.log(selectedOpponent.toString())
+
     })
 
     $('#scissors').on('click', function () {
+        userChoice = 'scissors';
+
         if (!disableChoices) {
-            randomizeOpp();
+
             opponentImage();
         }
 
@@ -224,18 +247,31 @@ $(document).ready(function () {
         }
 
 
-        console.log(selectedOpponent.toString())
-
 
     })
 
+    $('#warrior').on('click', function () {
+        console.log(userChoice)
+        console.log(computerGuess)
 
+        if (userChoice === 'rock') {
+            throwRock()
+        } else if (userChoice === 'paper') {
+            throwPaper();
+        } else if (userChoice === 'scissors') {
+            throwScissors()
+        } else {
+            alert('Please select a weapon')
+        }
+    })
 
-    console.log(userChoice)
-    console.log(computerGuess)
-    console.log(hasPicked)
-    console.log(disableChoices)
-    console.log(selectedOpponent.toString())
+    $('#battle').on('click', function () {
+        initializeGame();
+        console.log(selectedOpponent)
+        console.log(hasPicked)
+        console.log(disableChoices)
+        console.log(computerGuess)
+    })
 
 
 
